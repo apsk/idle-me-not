@@ -1,0 +1,91 @@
+@font-face
+  font-family: 'League Gothic - Regular'
+  src: url(resources/LeagueGothic-Regular.otf)
+
+html, body
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  background-image: url(resources/background-green.png)
+
+body > footer
+  position: absolute
+  text-align: center
+  width: 100%
+  bottom: 0.5em
+  color: transparentize(white, 0.4)
+  a:link, :active, :visited
+    color: white
+  a:hover
+    background-color: transparentize(red, 0.2)
+
+#logo
+  width: 100%
+  text-align: center
+  color: white
+  background-image: url(resources/background-dark-lilac.jpg)
+  font-family: 'League Gothic - Regular', sans-serif
+
+#logo-end
+  margin-left: 0.1em
+
+#sublogo
+  font-size: 2em
+  text-align: center
+  background-color: transparentize(bisque, 0.8)
+
+.em3
+  font-size: 3em
+
+.em4
+  font-size: 4em
+
+.lightgreen
+  color: lightgreen
+
+.deepskyblue
+  color: deepskyblue
+
+#application
+  padding: 5px 0
+  position: absolute
+  width: 400px
+  top: 9em
+  bottom: 3em
+  left: 50%
+  margin-left: -200px
+  border: 5px dashed white
+  background-color: transparentize(white, 0.8)
+
+.task-entry
+  width: 100%
+  float: left
+  margin-bottom: 5px
+  input
+    background-color: transparentize(white, 0.3)
+    padding: 4px 4px 4px 4px
+    border: none
+
+.task-entry.completed
+  background-color: transparentize(lawngreen, 0.6)
+
+.task-entry.empty-description
+  background-color: transparentize(gray, 0.6)
+
+.task-starting-time, .task-ending-time
+  width: 40px
+
+.task-description
+  width: 99%
+
+.task-entry-left
+  float: left
+
+.task-entry-left > *
+  display: table-cell
+
+.task-entry-right
+  padding-left: 1px
+  padding-right: 10px
+  overflow: hidden

@@ -1,0 +1,1 @@
+/home/apsk/js/ember.ts/ember.d.ts

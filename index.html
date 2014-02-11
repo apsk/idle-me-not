@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>IDLE me NOT :: The ultimate TODO-application</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script type="text/x-handlebars" data-template-name="_task">
+        <div {{bind-attr class=":task-entry completed emptyDescription"}}>
+            <div class="task-entry-left">
+                {{input type="checkbox" checked=completed}}
+                {{input class="task-starting-time" value=startingTime}}-<!--
+                -->{{input class="task-ending-time" value=endingTime}}:
+            </div>
+            <div class="task-entry-right">
+                {{input class="task-description" value=description}}
+            </div>
+        </div>
+    </script>
+    <script type="text/x-handlebars" data-template-name="day">
+        Tasks: ({{date}})
+        {{#each tasks itemController="task"}}
+            {{partial "task"}}
+        {{/each}}
+    </script>
+</head>
+<body>
+    <header id="logo">
+        <span class="em4">- IDLE&nbsp;</span>
+        <span class="em3">me</span>
+        <span class="em4">&nbsp;NOT</span><span id="logo-end" class="em4">-</span>
+        <div id="sublogo">
+            structure your <span class="lightgreen">time</span>
+            like a <span class="deepskyblue">boss</span>
+        </div>
+    </header>
+    <script type="text/x-handlebars">
+        <div id="application">{{outlet}}</div>
+    </script>
+    <footer>by Andriy &lsquo;<a href="http://github.com/apsk">apsk</a>&rsquo; Polishchuk</footer>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/ember/ember.js"></script>
+    <script src="bower_components/ember-data/ember-data.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/application.js"></script>
+    <script src="scripts/models/day.js"></script>
+    <script src="scripts/models/task.js"></script>
+    <script src="scripts/controllers/task_controller.js"></script>
+    <script src="scripts/router.js"></script>
+</body>
+<!--{{#each}}-->
+<!--<div>-->
+<!--&lt;!&ndash;<input type="checkbox" class="toggle">&ndash;&gt;-->
+<!--&lt;!&ndash;<label>{{title}}</label><button class="destroy"></button>&ndash;&gt;-->
+<!--</div>-->
+<!--{{/each}}-->
+</html>
