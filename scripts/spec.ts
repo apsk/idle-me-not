@@ -8,9 +8,11 @@ declare module DS {
 
 declare module Ember {
     interface Application {
-        Task?: DS.Model;
+        Task?: typeof DS.Model;
+        TaskAdapter?: DS.Adapter;
         TaskController?: Ember.Controller;
-        Day?: DS.Model;
+        Day?: typeof DS.Model;
+        DayAdapter?: DS.Adapter;
         DayRoute?: Ember.Route;
     }
 }

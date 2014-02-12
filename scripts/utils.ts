@@ -32,12 +32,13 @@ function Just<X>(x: X): Maybe<X> { return {
 }}
 
 interface DateUtils {
-    MONTH_NAMES: string[];
-    tryParseDateParts(dateString: string): Maybe<number[]>;
+    MONTH_NAMES: String[];
+    tryParseDateParts(dateString: String): Maybe<number[]>;
     tryComputeDateNumberForParts(dateParts: number[]): Maybe<number>;
-    tryComputeDateNumberForString(dateString: string): Maybe<number>;
-    tryExpandDateString(dateString: string): Maybe<string>;
+    tryComputeDateNumberForString(dateString: String): Maybe<number>;
+    tryExpandDateString(dateString: string): Maybe<String>;
     computeTodaysDateNumber(): number;
+    todaysDateString(): String;
 }
 
 var DateUtils: DateUtils = {
@@ -65,7 +66,7 @@ var DateUtils: DateUtils = {
             DateUtils.tryComputeDateNumberForParts(dp)
         ),
     tryExpandDateString: dateString =>
-        this.tryParseDateParts(dateString).map(dp =>
+        DateUtils.tryParseDateParts(dateString).map(dp =>
             '{0} {1}, {2}'.format([dp[2], DateUtils.MONTH_NAMES[dp[1]], dp[0]])
         ),
     computeTodaysDateNumber: () => {
@@ -73,5 +74,11 @@ var DateUtils: DateUtils = {
         return DateUtils.tryComputeDateNumberForParts([
             date.getFullYear(), date.getMonth(), date.getDate()
         ]).get();
+    },
+    todaysDateString: () => {
+        var date = new Date();
+        return '{0}-{1}-{2}'.format([
+            date.getFullYear(), date.getMonth(), date.getDate()
+        ]);
     }
 };

@@ -8,6 +8,9 @@ IdleMeNot.Task = DS.Model.extend({
     day: DS.belongsTo('day')
 });
 
+IdleMeNot.TaskAdapter = SpecializedLocalstorageAdapter('task');
+
+/*
 IdleMeNot.Task.FIXTURES = [{
     id: 0,
     startingTime: '06:00',
@@ -27,3 +30,4 @@ IdleMeNot.Task.FIXTURES = [{
     description: 'Write typings',
     completed: true
 }];
+*/
