@@ -11,18 +11,15 @@ IdleMeNot.DayRoute = Ember.Route.extend({
         return store.findFirst('day', { date: todaysDateString })
             .then(function (record) {
                 if (record) return record;
-                return store.createRecord('day', { date: todaysDateString })
-                    .save().then(day => {
-                        return store.createRecord('task', {
-                            startingTime: '6:00',
-                            endingTime: '7:00',
-                            description: 'Clean teeth',
-                            day: day
-                        }).save().then(task => {
-                            day.get('tasks').addObject(task);
-                            return day;
-                        })
-                    });
+                var day = store.createRecord('day', { date: todaysDateString });
+                var task = store.createRecord('task', {
+                    startingTime: '6:00',
+                    endingTime: '7:00',
+                    description: 'Clean teeth',
+                    day: day
+                });
+                day.get('tasks').then(tasks => tasks.addObject(task));
+                return day;
             });
     }
 });
