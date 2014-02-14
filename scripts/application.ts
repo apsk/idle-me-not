@@ -4,8 +4,6 @@
 
 var IdleMeNot = Ember.Application.create();
 
-// IdleMeNot.ApplicationAdapter = LocalstorageAdapter;
-
 IdleMeNot.Store = DS.Store.extend({
     findFirst: function (type, idOrQuery) {
         return this.find(type, idOrQuery).then(

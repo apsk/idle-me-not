@@ -17,10 +17,13 @@
         </div>
     </script>
     <script type="text/x-handlebars" data-template-name="day">
-        Tasks: ({{date}})
+        <header id="date">{{expand-date date}}</header>
         {{#each tasks itemController="task"}}
             {{partial "task"}}
         {{/each}}
+        {{#with newTask}}
+            {{partial "task"}}
+        {{/with}}
     </script>
 </head>
 <body>
@@ -46,7 +49,9 @@
     <script src="scripts/application.js"></script>
     <script src="scripts/models/day.js"></script>
     <script src="scripts/models/task.js"></script>
+    <script src="scripts/controllers/day_controller.js"></script>
     <script src="scripts/controllers/task_controller.js"></script>
+    <script src="scripts/helpers/expand_date.js"></script>
     <script src="scripts/router.js"></script>
 </body>
 </html>

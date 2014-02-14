@@ -15,21 +15,29 @@ interface Maybe<X> {
     map<Y>(fn: (X) => Y): Maybe<Y>;
     bind<Y>(fn: (X) => Maybe<Y>): Maybe<Y>;
     get(): X;
+    getOrElse(other: X): X;
+    isJust(): boolean;
 }
 
 var Nothing: Maybe<any> = {
     maybe: (_, fail) => fail(),
     map: _ => Nothing,
     bind: _ => Nothing,
-    get: () => { throw 'Tried to retrieve value from Nothing!'; }
+    get: () => { throw 'Tried to retrieve value from Nothing!'; },
+    getOrElse: x => x,
+    isJust: () => false
 };
 
-function Just<X>(x: X): Maybe<X> { return {
-    maybe: (success, _) => success(x),
-    map: fn => Just(fn(x)),
-    bind: fn => fn(x),
-    get: () => x
-}}
+function Just<X>(x: X): Maybe<X> {
+    return <any>{
+        maybe: (success, _) => success(x),
+        map: fn => Just(fn(x)),
+        bind: fn => fn(x),
+        get: () => x,
+        getOrElse: _ => x,
+        isJust: () => true
+    };
+}
 
 interface DateUtils {
     MONTH_NAMES: String[];
@@ -39,6 +47,7 @@ interface DateUtils {
     tryExpandDateString(dateString: string): Maybe<String>;
     computeTodaysDateNumber(): number;
     todaysDateString(): String;
+    isValidDateString(dateString: string): boolean;
 }
 
 var DateUtils: DateUtils = {
@@ -48,14 +57,16 @@ var DateUtils: DateUtils = {
     ],
     tryParseDateParts: dateString => {
         var parts = dateString.split('-');
-        var parseFail = false;
+        var fail = false;
         var intParts = parts.map(s => {
             var n = parseInt(s);
-            if (isNaN(n)) parseFail = true;
+            if (isNaN(n)) fail = true;
             return n;
         });
-        return (parts.length < 3 || parseFail)
-            ? Nothing : Just(intParts);
+        fail = fail || parts.length < 3
+            || intParts[1] < 1 || intParts[1] > 12
+            || intParts[2] < 1 || intParts[2] > 31;
+        return fail ? Nothing : Just(intParts);
     },
     tryComputeDateNumberForParts: dateParts =>
         dateParts.length < 3 ? Nothing : Just(
@@ -80,5 +91,8 @@ var DateUtils: DateUtils = {
         return '{0}-{1}-{2}'.format([
             date.getFullYear(), date.getMonth(), date.getDate()
         ]);
+    },
+    isValidDateString: function (dateString) {
+        return dateString ? DateUtils.tryParseDateParts(dateString).isJust() : false;
     }
 };

@@ -8,14 +8,16 @@ function SpecializedLocalstorageAdapter(type: string): DS.Adapter { return DS.Ad
         localStorage.setItem(idKey, (id + 1).toString());
         return id;
     },
-    find: (store, type, id) =>
-        Ember.RSVP.resolve(JSON.parse(localStorage.getItem(type + '_' + id))),
-    findMany: (store, type, ids) =>
-        Ember.RSVP.resolve(ids.map(id => JSON.parse(localStorage.getItem(type + '_' + id)))),
-    findAll: function (store, type) {
+    find: function (_store, _type, id) {
+        return Ember.RSVP.resolve(JSON.parse(localStorage.getItem(type + '_' + id)));
+    },
+    findMany: function (_store, _type, ids) {
+        return Ember.RSVP.resolve(ids.map(id => JSON.parse(localStorage.getItem(type + '_' + id))));
+    },
+    findAll: function (store, _type) {
         return this.findMany(store, type, JSON.parse(localStorage.getItem(type + '_ids') || '[]'));
     },
-    findQuery: function (store, type, query) {
+    findQuery: function (store, _type, query) {
         return this.findAll(store, type).then(array =>
                 array.filter(record => {
                     for(var key in query) {
@@ -33,11 +35,11 @@ function SpecializedLocalstorageAdapter(type: string): DS.Adapter { return DS.Ad
         localStorage.setItem(type + '_' + record.id, JSON.stringify(record));
         return Ember.RSVP.resolve();
     },
-    updateRecord: (store, type, record) => {
+    updateRecord: (_store, _type, record) => {
         localStorage.setItem(type + '_' + record.id, JSON.stringify(record));
         return Ember.RSVP.resolve();
     },
-    deleteRecord: (store, type, record) => {
+    deleteRecord: (_store, _type, record) => {
         var idsKey = type + '_ids';
         var ids: number[] = JSON.parse(localStorage.getItem(idsKey));
         ids.splice(ids.indexOf(record.id), 1);
