@@ -2,7 +2,6 @@ bower_components/
 .idea
 *.iml
 *.css
-*.js
 *.js.map
 *~
 

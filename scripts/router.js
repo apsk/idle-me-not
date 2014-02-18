@@ -1,5 +1,3 @@
-/// <reference path="application.ts" />
-
 IdleMeNot.Router.map(function () {
     this.route('day', { path: '/:date' });
 });
@@ -11,8 +9,8 @@ IdleMeNot.IndexRoute = Ember.Route.extend({
 });
 
 IdleMeNot.DayRoute = Ember.Route.extend({
-    model: function (params?) {
-        var store: DS.Store = this.store;
+    model: function (params) {
+        var store = this.store;
         var dateString = params.date;
         if (!DateUtils.isValidDateString(params.date))
             dateString = DateUtils.todaysDateString();

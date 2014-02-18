@@ -1,5 +1,3 @@
-/// <reference path="../application.ts" />
-
 IdleMeNot.TaskController = Ember.ObjectController.extend({
     emptyDescription: function () {
         return this.get('model.description') == '';
