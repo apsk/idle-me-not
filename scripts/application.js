@@ -4,6 +4,11 @@ $(window).load(function () {
             updateOnContentResize: true
         }
     });
+    var datepicker = $('#datepicker');
+    datepicker.datepicker();
+    $('#date').click(function () {
+        datepicker.focus();
+    });
 });
 
 var IdleMeNot = Ember.Application.create();
