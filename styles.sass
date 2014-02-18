@@ -9,19 +9,9 @@ html, body
   padding: 0
   background-image: url(resources/background-green.png)
 
-body > footer
-  position: absolute
-  text-align: center
-  width: 100%
-  bottom: 0.5em
-  color: transparentize(white, 0.4)
-  a:link, :active, :visited
-    color: white
-  a:hover
-    background-color: transparentize(red, 0.2)
-
 #logo
   width: 100%
+  border-bottom: 3px double transparentize(white, 0.2)
   text-align: center
   color: white
   background-image: url(resources/background-dark-lilac.jpg)
@@ -35,30 +25,6 @@ body > footer
   text-align: center
   background-color: transparentize(bisque, 0.8)
 
-#date
-  padding: 0
-  margin-top: 0
-  margin-left: 50%
-  margin-right: 5px
-  margin-bottom: 5px
-  color: transparentize(red, 0.4)
-  font-size: 2em
-  text-align: center
-  font-family: 'League Gothic - Regular', sans-serif
-  //background-color: transparentize(orangered, 0.6)
-
-.em3
-  font-size: 3em
-
-.em4
-  font-size: 4em
-
-.lightgreen
-  color: lightgreen
-
-.deepskyblue
-  color: deepskyblue
-
 #application
   padding: 5px 0
   position: absolute
@@ -67,8 +33,60 @@ body > footer
   bottom: 3em
   left: 50%
   margin-left: -200px
-  border: 5px dashed white
+  border: 3px double transparentize(red, 0.4)
   background-color: transparentize(white, 0.8)
+
+#application header
+  margin-bottom: 5px
+
+#application header > *:first-child
+  margin-left: 20px
+
+#save, #undo
+  color: transparentize(white, 0.2)
+  font-size: 2em
+  margin-right: 6px
+  cursor: pointer
+
+#save:hover
+  color: lawngreen
+
+#undo:hover
+  color: transparentize(yellow, 0.2)
+
+#date
+  display: inline-block
+  position: absolute
+  padding: 0
+  margin-top: 0
+  right: 0
+  margin-right: 5px
+  color: transparentize(red, 0.4)
+  font-size: 32px
+  text-align: center
+  font-family: 'League Gothic - Regular', sans-serif
+
+#date *:hover
+  cursor: pointer
+  color: transparentize(red, 0.2)
+
+#date nav
+  font-size: 0.5em
+  vertical-align: middle
+
+hr
+  height: 1px
+  color: transparentize(red, 0.4)
+  background: transparentize(red, 0.4)
+  font-size: 0
+  border: 0
+
+#tasks
+  width: 100%
+  position: absolute
+  top: 43px
+  bottom: 60px
+  overflow: hidden
 
 .task-entry
   margin-right: 5px
@@ -98,5 +116,73 @@ body > footer
 
 .task-entry-right
   padding-left: 1px
-  //padding-right: 10px
   overflow: hidden
+
+#application footer
+  display: block
+  position: absolute
+  width: 100%
+  height: 60px
+  bottom: 0
+  border-top: 1px solid transparentize(red, 0.4)
+  //background-color: transparentize(white, 0.8)
+
+#footer-strip
+  display: block
+  position: absolute
+  width: 100%
+  height: 30px
+  bottom: 65px
+  background-color: transparentize(white, 0.6)
+  //background: linear-gradient(to right, transparent, #c0e3e1, #c0e3e1, #c0e3e1, transparent)
+
+#dropbox, #hdd
+  position: absolute
+  top: 15px
+  font-size: 32px
+
+#dropbox
+  left: 20px
+
+#hdd
+  left: 72px
+
+#done
+  //margin-top: -10px
+  position: absolute
+  color: transparentize(red, 0.6)
+  font-size: 52px
+  top: 4px
+  right: 10%
+  border-radius: 50%
+  z-index: 0
+  background-color: #addcd9
+
+#done:hover
+  color: limegreen
+
+body > footer
+  position: absolute
+  text-align: center
+  width: 100%
+  bottom: 0.5em
+  color: transparentize(white, 0.4)
+  a:link, :active, :visited
+    color: white
+  a:hover
+    background-color: transparentize(red, 0.2)
+
+.em3
+  font-size: 3em
+
+.em4
+  font-size: 4em
+
+.lightgreen
+  color: lightgreen
+
+.deepskyblue
+  color: lightskyblue
+
+.mCSB_container
+  margin-right: 10px

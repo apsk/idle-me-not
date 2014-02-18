@@ -1,4 +1,5 @@
 /// <reference path="../typings/ember/ember.d.ts" />
+/// <reference path="../typings/jquery/jquery.d.ts" />
 
 declare module DS {
     interface Store {
@@ -16,5 +17,6 @@ declare module Ember {
         DayAdapter?: DS.Adapter;
         DayController?: Ember.Controller;
         DayRoute?: Ember.Route;
+        FocusInputComponent?: Ember.Component;
     }
 }

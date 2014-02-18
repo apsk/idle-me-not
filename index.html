@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>IDLE me NOT :: The ultimate TODO-application</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"/>
     <link rel="stylesheet" href="styles.css"/>
     <script type="text/x-handlebars" data-template-name="_task">
         <div {{bind-attr class=":task-entry completed emptyDescription"}}>
@@ -17,13 +19,26 @@
         </div>
     </script>
     <script type="text/x-handlebars" data-template-name="day">
-        <header id="date">{{expand-date date}}</header>
-        {{#each tasks itemController="task"}}
-            {{partial "task"}}
-        {{/each}}
-        {{#with newTask}}
-            {{partial "task"}}
-        {{/with}}
+        <header>
+            <i id="save" class="fa fa-floppy-o"></i>
+            <i id="undo" class="fa fa-undo"></i>
+            <div id="date">
+                <nav id="date-prev" class="fa fa-arrow-left"></nav>
+                <span id="date-text">{{expand-date date}}</span>
+                <nav id="date-next" class="fa fa-arrow-right"></nav>
+            </div>
+        </header>
+        <hr>
+        <section id="tasks">
+            {{#each tasks itemController="task"}}
+                {{partial "task"}}
+            {{/each}}
+        </section>
+        <footer>
+            <i id="dropbox" class="fa fa-dropbox"></i>
+            <i id="hdd" class="fa fa-hdd-o"></i>
+            <i id="done" class="fa fa-check"></i>
+        </footer>
     </script>
 </head>
 <body>
@@ -39,8 +54,10 @@
     <script type="text/x-handlebars">
         <div id="application">{{outlet}}</div>
     </script>
+    <div id="footer-strip"></div>
     <footer>by Andriy &lsquo;<a href="http://github.com/apsk">apsk</a>&rsquo; Polishchuk</footer>
     <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js"></script>
     <script src="bower_components/handlebars/handlebars.js"></script>
     <script src="bower_components/ember/ember.js"></script>
     <script src="bower_components/ember-data/ember-data.js"></script>
@@ -52,6 +69,7 @@
     <script src="scripts/controllers/day_controller.js"></script>
     <script src="scripts/controllers/task_controller.js"></script>
     <script src="scripts/helpers/expand_date.js"></script>
+    <script src="scripts/components/focus_input.js"></script>
     <script src="scripts/router.js"></script>
 </body>
 </html>

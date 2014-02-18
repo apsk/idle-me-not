@@ -1,13 +1,19 @@
 /// <reference path="../application.ts" />
 
 IdleMeNot.DayController = Ember.ObjectController.extend({
-    init: function () {
-        this.set('newTask', this.store.createRecord('task', { completed: false }));
-    },
+    newTask: null,
+    _tasksInitialized: function () {
+        var newTask = this.store.createRecord('task', { completed: false });
+        this.set('newTask', newTask);
+        this.get('tasks').addObject(newTask);
+        this.removeObserver('tasks', this, this._tasksInitialized);
+    }.observes('tasks'),
     _newTaskDescription: function () {
-        var task = this.get('newTask');
-        if (!task.get('description')) return;
-        this.get('tasks').addObject(task);
-        this.set('newTask', this.store.createRecord('task', { completed: false }));
-    }.observes('newTask.description').on('init')
+        var newTask = this.get('newTask');
+        if (newTask.get('description')) {
+            var newTask = this.store.createRecord('task', { completed: false });
+            this.set('newTask', newTask);
+            this.get('tasks').addObject(newTask);
+        }
+    }.observes('newTask.description')
 });
