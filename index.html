@@ -2,11 +2,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>IDLE me NOT :: The ultimate TODO-application</title>
+    <title>IDLE me NOT :: teh ULTIMATE time ORGANIZER</title>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"/>
     <link rel="stylesheet" href="lib/jquery-ui-1.10.4.custom/css/redmond/jquery-ui-1.10.4.custom.min.css"/>
     <link rel="stylesheet" href="styles.css"/>
+    <script type="text/x-handlebars" id="components/text-datepicker">
+        {{expand-date date}}<input>
+    </script>
     <script type="text/x-handlebars" data-template-name="_task">
         <div {{bind-attr class=":task-entry completed emptyDescription"}}>
             <div class="task-entry-left">
@@ -24,11 +27,9 @@
             <i id="save" class="fa fa-floppy-o"></i>
             <i id="undo" class="fa fa-undo"></i>
             <div id="date">
-                <nav id="date-prev" class="fa fa-arrow-left"></nav>
-                <span id="date-text">
-                    {{expand-date date}}<input id="datepicker">
-                </span>
-                <nav id="date-next" class="fa fa-arrow-right"></nav>
+                <nav id="date-prev" class="fa fa-arrow-left" {{action 'prevDay' date}}></nav>
+                {{text-datepicker date=date changed='gotoDate'}}
+                <nav id="date-next" class="fa fa-arrow-right" {{action 'nextDay' date}}></nav>
             </div>
         </header>
         <hr>
@@ -70,9 +71,10 @@
     <script src="scripts/application.js"></script>
     <script src="scripts/models/day.js"></script>
     <script src="scripts/models/task.js"></script>
-    <script src="scripts/controllers/day_controller.js"></script>
-    <script src="scripts/controllers/task_controller.js"></script>
-    <script src="scripts/helpers/expand_date.js"></script>
+    <script src="scripts/controllers/day-controller.js"></script>
+    <script src="scripts/controllers/task-controller.js"></script>
+    <script src="scripts/helpers/expand-date.js"></script>
+    <script src="scripts/components/text-datepicker.js"></script>
     <script src="scripts/router.js"></script>
 </body>
 </html>

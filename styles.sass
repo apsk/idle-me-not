@@ -26,7 +26,6 @@ html, body
   background-color: transparentize(bisque, 0.8)
 
 #application
-  //padding: 5px 0
   padding: 0
   position: absolute
   width: 400px
@@ -49,7 +48,6 @@ html, body
 
 #save
   left: 24px
-  //background-color: transparentize(red, 0.8)
 
 #undo
   left: 72px
@@ -71,16 +69,6 @@ html, body
   font-size: 32px
   text-align: center
   font-family: 'League Gothic - Regular', sans-serif
-
-#datepicker
-  //display: none
-  border: 0
-  line-height: 0
-  font-size: 0
-  height: 0
-  overflow: hidden
-  padding: 0
-  margin: 0
 
 #date *:hover
   cursor: pointer
@@ -132,6 +120,7 @@ hr
 
 .task-entry-right
   padding-left: 1px
+  padding-right: 6px
   overflow: hidden
 
 #application footer
@@ -141,7 +130,6 @@ hr
   height: 60px
   bottom: 0
   border-top: 1px solid transparentize(red, 0.4)
-  //background-color: transparentize(white, 0.8)
 
 #footer-strip
   display: block
@@ -150,7 +138,6 @@ hr
   height: 30px
   bottom: 65px
   background-color: transparentize(white, 0.6)
-  //background: linear-gradient(to right, transparent, #c0e3e1, #c0e3e1, #c0e3e1, transparent)
 
 #dropbox, #hdd
   position: absolute
@@ -212,3 +199,39 @@ body > footer
 
 .mCSB_container
   margin-right: 10px
+
+.ui-corner-all
+  border-radius: 0
+
+.ui-widget-header
+  background: url(resources/background-dark-lilac.jpg)
+  border: 0
+
+.ui-widget-content
+  color: white
+  background: url(resources/background-dark-lilac.jpg)
+
+.ui-widget-content .ui-state-default
+  background: none
+  border: 1px solid white
+  color: white
+
+.ui-widget-content .ui-state-active
+  color: transparentize(black, 0.4)
+  border: 3px double transparentize(black, 0.4)
+
+.ui-widget-content .ui-state-hover
+  color: transparentize(black, 0.8)
+
+.ui-widget-content::after
+  display: block
+  background-color: transparentize(white, 0.6)
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: -1
+
+.ui-datepicker td span, .ui-datepicker td a
+  text-align: center

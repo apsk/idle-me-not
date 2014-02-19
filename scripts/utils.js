@@ -10,6 +10,12 @@ String.prototype.format = function (args) {
     });
 };
 
+Date.prototype.shiftDays = function (days) {
+    var newDate = new Date(this.getTime());
+    newDate.setDate(newDate.getDate() + days);
+    return newDate;
+};
+
 var Nothing = {
     maybe: function (_, fail) {
         return fail();
@@ -71,30 +77,26 @@ var DateUtils = {
         fail = fail || parts.length < 3 || intParts[1] < 1 || intParts[1] > 12 || intParts[2] < 1 || intParts[2] > 31;
         return fail ? Nothing : Just(intParts);
     },
-    tryComputeDateNumberForParts: function (dateParts) {
-        return dateParts.length < 3 ? Nothing : Just((dateParts[0] - 2000) * 372 + (dateParts[1] - 1) * 31 + dateParts[2] - 1);
-    },
-    tryComputeDateNumberForString: function (dateString) {
-        return DateUtils.tryParseDateParts(dateString).bind(function (dp) {
-            return DateUtils.tryComputeDateNumberForParts(dp);
-        });
-    },
     tryExpandDateString: function (dateString) {
         return DateUtils.tryParseDateParts(dateString).map(function (dp) {
             return '{0} {1}, {2}'.format([dp[2], DateUtils.MONTH_NAMES[dp[1]], dp[0]]);
         });
     },
-    computeTodaysDateNumber: function () {
-        var date = new Date();
-        return DateUtils.tryComputeDateNumberForParts([
-            date.getFullYear(), date.getMonth(), date.getDate()
-        ]).get();
-    },
-    todaysDateString: function () {
-        var date = new Date();
+    dateStringFromDate: function (date) {
         return '{0}-{1}-{2}'.format([
             date.getFullYear(), date.getMonth(), date.getDate()
         ]);
+    },
+    dateFromDateString: function (dateString) {
+        var parts = this.tryParseDateParts(dateString).get();
+        var date = new Date();
+        date.setFullYear(parts[0]);
+        date.setMonth(parts[1]);
+        date.setDate(parts[2]);
+        return date;
+    },
+    todaysDateString: function () {
+        return this.dateStringFromDate(new Date());
     },
     isValidDateString: function (dateString) {
         return dateString ? DateUtils.tryParseDateParts(dateString).isJust() : false;
