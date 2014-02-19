@@ -29,15 +29,11 @@ IdleMeNot.DayRoute = Ember.Route.extend({
             });
     },
     actions: {
-        prevDate: function (dateString) {
-            this.transitionTo('day', DateUtils.dateStringFromDate(
-                DateUtils.dateFromDateString(dateString).shiftDays(-1)
-            ));
+        prevDate: function (date) {
+            this.transitionTo('day', DateUtils.dateStringFromDate(date.shiftDays(-1)));
         },
-        nextDate: function (dateString) {
-            this.transitionTo('day', DateUtils.dateStringFromDate(
-                DateUtils.dateFromDateString(dateString).shiftDays(+1)
-            ));
+        nextDate: function (date) {
+            this.transitionTo('day', DateUtils.dateStringFromDate(date.shiftDays(+1)));
         },
         gotoDate: function (date) {
             this.transitionTo('day', DateUtils.dateStringFromDate(date));

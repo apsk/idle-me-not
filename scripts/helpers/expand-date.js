@@ -1,3 +1,3 @@
-Ember.Handlebars.helper('expand-date', function(dateString) {
-    return DateUtils.tryExpandDateString(dateString).getOrElse('Wrong date!');
+Ember.Handlebars.helper('expand-date', function (date) {
+    return DateUtils.expandDate(date);
 });

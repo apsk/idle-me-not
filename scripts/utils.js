@@ -77,10 +77,10 @@ var DateUtils = {
         fail = fail || parts.length < 3 || intParts[1] < 1 || intParts[1] > 12 || intParts[2] < 1 || intParts[2] > 31;
         return fail ? Nothing : Just(intParts);
     },
-    tryExpandDateString: function (dateString) {
-        return DateUtils.tryParseDateParts(dateString).map(function (dp) {
-            return '{0} {1}, {2}'.format([dp[2], DateUtils.MONTH_NAMES[dp[1]], dp[0]]);
-        });
+    expandDate: function (date) {
+        return '{0} {1}, {2}'.format([
+            date.getDate(), DateUtils.MONTH_NAMES[date.getMonth()], date.getFullYear()
+        ]);
     },
     dateStringFromDate: function (date) {
         return '{0}-{1}-{2}'.format([

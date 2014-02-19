@@ -1,5 +1,8 @@
 IdleMeNot.DayController = Ember.ObjectController.extend({
     newTask: null,
+    date: function () {
+        return DateUtils.dateFromDateString(this.get('model.date'));
+    }.property('model.date'),
     _tasksInitialized: function () {
         var task = this.store.createRecord('task', { completed: false });
         this.set('newTask', task);

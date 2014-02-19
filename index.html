@@ -27,9 +27,9 @@
             <i id="save" class="fa fa-floppy-o"></i>
             <i id="undo" class="fa fa-undo"></i>
             <div id="date">
-                <nav id="date-prev" class="fa fa-arrow-left" {{action 'prevDay' date}}></nav>
+                <nav id="date-prev" class="fa fa-arrow-left" {{action 'prevDate' date}}></nav>
                 {{text-datepicker date=date changed='gotoDate'}}
-                <nav id="date-next" class="fa fa-arrow-right" {{action 'nextDay' date}}></nav>
+                <nav id="date-next" class="fa fa-arrow-right" {{action 'nextDate' date}}></nav>
             </div>
         </header>
         <hr>

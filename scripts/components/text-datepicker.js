@@ -13,7 +13,7 @@ IdleMeNot.TextDatepickerComponent = Ember.Component.extend({
             fontSize: 0
         });
         dp.datepicker({
-            defaultDate: DateUtils.dateFromDateString(this.get('date')),
+            defaultDate: this.get('date'),
             onSelect: function () {
                 component.sendAction('changed', dp.datepicker('getDate'));
             }
