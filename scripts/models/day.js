@@ -1,6 +1,4 @@
 IdleMeNot.Day = DS.Model.extend({
     date: DS.attr('string'),
-    tasks: DS.hasMany('task')
+    tasks: DS.hasMany('task', { async: true })
 });
-
-IdleMeNot.DayAdapter = SpecializedLocalstorageAdapter('day');

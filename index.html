@@ -24,8 +24,8 @@
     </script>
     <script type="text/x-handlebars" data-template-name="day">
         <header>
-            <i id="save" class="fa fa-floppy-o"></i>
-            <i id="undo" class="fa fa-undo"></i>
+            <i id="save" class="fa fa-floppy-o" {{action 'save'}}></i>
+            <i id="undo" class="fa fa-undo" {{action 'undo'}}></i>
             <div id="date">
                 <nav id="date-prev" class="fa fa-arrow-left" {{action 'prevDate' date}}></nav>
                 {{text-datepicker date=date changed='gotoDate'}}
@@ -51,7 +51,7 @@
         <span class="em3">me</span>
         <span class="em4">&nbsp;NOT</span><span id="logo-end" class="em4">-</span>
         <div id="sublogo">
-            structure your <span class="lightgreen">time</span>
+            structuring <span class="lightgreen">time</span>
             like a <span class="deepskyblue">boss</span>
         </div>
     </header>
@@ -67,7 +67,7 @@
     <script src="bower_components/ember/ember.js"></script>
     <script src="bower_components/ember-data/ember-data.js"></script>
     <script src="scripts/utils.js"></script>
-    <script src="scripts/adapters/specialized_localstorage_adapter.js"></script>
+    <script src="scripts/adapters/flat-localstorage-adapter.js"></script>
     <script src="scripts/application.js"></script>
     <script src="scripts/models/day.js"></script>
     <script src="scripts/models/task.js"></script>

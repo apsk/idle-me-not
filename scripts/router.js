@@ -16,17 +16,20 @@ IdleMeNot.DayRoute = Ember.Route.extend({
             dateString = DateUtils.todaysDateString();
         return store.findFirst('day', { date: dateString })
             .then(function (record) {
-                if (record) return record;
-                var day = store.createRecord('day', { date: dateString });
-                var task = store.createRecord('task', {
-                    startingTime: '6:00',
-                    endingTime: '7:00',
-                    description: 'Teeth cleaning; calisthenics',
-                    day: day
-                });
-                day.get('tasks').addObject(task);
-                return day;
+                // return record || store.createRecord('day', { date: dateString });
+                if (record) {
+                    return store.find('task', { day: record.get('id') })
+                        .then(function (tasks) {
+                            // record.get('tasks').addObjects(tasks);
+                            // record.get('stateManager').transitionTo('loaded.saved');
+                            return record;
+                        });
+                }
+                return store.createRecord('day', { date: dateString });
             });
+    },
+    afterModel: function (model) {
+        return this.store.find('task', { day: model.get('id') });
     },
     actions: {
         prevDate: function (date) {

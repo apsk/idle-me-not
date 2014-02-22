@@ -1,0 +1,7 @@
+When I tried to roll my own lightweight persistence layer,
+I have quickly realized what useful and complex thing ember data gives for free:
+
+- state management (save -> create/update, etc)
+- serialization
+- parent-child client-server conversions (ids vs refs)
+

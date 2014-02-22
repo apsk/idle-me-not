@@ -5,5 +5,3 @@ IdleMeNot.Task = DS.Model.extend({
     completed: DS.attr('boolean'),
     day: DS.belongsTo('day')
 });
-
-IdleMeNot.TaskAdapter = SpecializedLocalstorageAdapter('task');
