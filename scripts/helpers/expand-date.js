@@ -1,3 +1,3 @@
-Ember.Handlebars.helper('expand-date', function (date) {
+Em.Handlebars.helper('expand-date', function (date) {
     return DateUtils.expandDate(date);
 });

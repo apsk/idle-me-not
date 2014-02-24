@@ -1,9 +1,9 @@
 var FlatLocalstorageAdapter = DS.Adapter.extend({
     find: function (store, type, id) {
-        return Ember.RSVP.resolve(JSON.parse(localStorage.getItem(type + '_' + id)));
+        return Em.RSVP.resolve(JSON.parse(localStorage.getItem(type + '_' + id)));
     },
     findMany: function (store, type, ids) {
-        return Ember.RSVP.resolve(ids.map(function (id) {
+        return Em.RSVP.resolve(ids.map(function (id) {
             return JSON.parse(localStorage.getItem(type + '_' + id));
         }));
     },
@@ -39,13 +39,13 @@ var FlatLocalstorageAdapter = DS.Adapter.extend({
         localStorage.setItem(type + '_' + id, JSON.stringify(
             record.serialize({ includeId: true })
         ));
-        return Ember.RSVP.resolve();
+        return Em.RSVP.resolve();
     },
     updateRecord: function (store, type, record) {
         localStorage.setItem(type + '_' + record.id, JSON.stringify(
             record.serialize({ includeId: true }))
         );
-        return Ember.RSVP.resolve();
+        return Em.RSVP.resolve();
     },
     deleteRecord: function (store, type, record) {
         var idsKey = type + '_ids';
@@ -53,6 +53,6 @@ var FlatLocalstorageAdapter = DS.Adapter.extend({
         ids.splice(ids.indexOf(record.id), 1);
         localStorage.setItem(idsKey, JSON.stringify(ids));
         localStorage.removeItem(type + '_' + record.id);
-        return Ember.RSVP.resolve();
+        return Em.RSVP.resolve();
     }
 });

@@ -1,33 +1,44 @@
-IdleMeNot.DayController = Ember.ObjectController.extend({
+IdleMeNot.DayController = Em.ObjectController.extend({
     newTask: null,
+
     date: function () {
         return DateUtils.dateFromDateString(this.get('model.date'));
     }.property('model.date'),
+
     _tasksInitialized: function () {
-        var task = this.store.createRecord('task', { completed: false });
-        this.set('newTask', task);
-        this.get('tasks').addObject(task);
-        this.removeObserver('tasks', this, this._tasksInitialized);
+        this.get('tasks').then(function (tasks) {
+            var task = this.store.createRecord('task', { completed: false });
+            this.set('newTask', task);
+            tasks.addObject(task);
+        }.bind(this));
     }.observes('tasks'),
+
     _newTaskDescription: function () {
         var task = this.get('newTask');
         if (task.get('description')) {
-            task = this.store.createRecord('task', { completed: false });
-            this.set('newTask', task);
-            this.get('tasks').addObject(task);
+            this.get('tasks').then(function (tasks) {
+                task = this.store.createRecord('task', { completed: false });
+                this.set('newTask', task);
+                tasks.addObject(task);
+            }.bind(this));
         }
     }.observes('newTask.description'),
+
     actions: {
         save: function () {
             var day = this.get('model');
-            Ember.RSVP.all(this.get('tasks').map(function (task) {
-                return task.save(); // task.get('description') ? task.save() : Ember.RSVP.resolve();
-            })).then(function () {
+            Em.RSVP.all(this
+                .get('tasks').slice(0, -1)
+                .map(function (task) { return task.save(); })
+            ).then(function () {
                 day.save();
             });
         },
+
         undo: function () {
-            this.get('model').rollback();
+            var tasks = this.get('tasks');
+            tasks.slice(0, -1).forEach(function (task) { task.rollback(); });
+            this.get('model').reload();
         }
     }
 });

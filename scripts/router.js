@@ -2,31 +2,21 @@ IdleMeNot.Router.map(function () {
     this.route('day', { path: '/:date' });
 });
 
-IdleMeNot.IndexRoute = Ember.Route.extend({
+IdleMeNot.IndexRoute = Em.Route.extend({
     beforeModel: function() {
-        this.transitionTo('day');
+        this.transitionTo('day', DateUtils.todaysDateString());
     }
 });
 
-IdleMeNot.DayRoute = Ember.Route.extend({
+IdleMeNot.DayRoute = Em.Route.extend({
     model: function (params) {
         var store = this.store;
         var dateString = params.date;
-        if (!DateUtils.isValidDateString(params.date))
+        if (!DateUtils.isValidDateString(dateString))
             dateString = DateUtils.todaysDateString();
-        return store.findFirst('day', { date: dateString })
-            .then(function (record) {
-                // return record || store.createRecord('day', { date: dateString });
-                if (record) {
-                    return store.find('task', { day: record.get('id') })
-                        .then(function (tasks) {
-                            // record.get('tasks').addObjects(tasks);
-                            // record.get('stateManager').transitionTo('loaded.saved');
-                            return record;
-                        });
-                }
-                return store.createRecord('day', { date: dateString });
-            });
+        return store.findFirst('day', { date: dateString }).then(function (record) {
+            return record || store.createRecord('day', { date: dateString });
+        });
     },
     afterModel: function (model) {
         return this.store.find('task', { day: model.get('id') });

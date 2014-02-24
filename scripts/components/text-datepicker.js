@@ -1,4 +1,4 @@
-IdleMeNot.TextDatepickerComponent = Ember.Component.extend({
+IdleMeNot.TextDatepickerComponent = Em.Component.extend({
     tagName: 'span',
     _wire: function () {
         var component = this;

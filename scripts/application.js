@@ -12,13 +12,13 @@ DS.JSONSerializer.reopen({
         var key = relationship.key;
         var relationshipType = DS.RelationshipChange.determineRelationshipType(record.constructor, relationship);
         if (relationshipType === 'manyToOne' || relationshipType === 'manyToMany') {
-            json[key] = Ember.get(record, key).mapBy('id');
+            json[key] = Em.get(record, key).mapBy('id').without(null);
         }
     },
-    serializeBelongsTo: function () {}
+    serializeBelongsTo: Em.K
 });
 
-var IdleMeNot = Ember.Application.create();
+var IdleMeNot = Em.Application.create();
 
 IdleMeNot.ApplicationAdapter = FlatLocalstorageAdapter.extend();
 
