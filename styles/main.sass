@@ -180,9 +180,20 @@ body > footer
   bottom: 0.5em
   color: transparentize(white, 0.4)
   a:link, :active, :visited
-    color: white
+    color: transparentize(white, 0.4)
   a:hover
-    background-color: transparentize(red, 0.2)
+    color: transparentize(red, 0.4)
+
+#by
+  position: relative
+  left: -4px
+  font-size: 0.7em
+  //color: transparentize(white, 0.2)
+
+#github
+  font-size: 2em
+  position: relative
+  top: 4px
 
 .em3
   font-size: 3em
