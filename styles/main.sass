@@ -25,6 +25,12 @@ html, body
   text-align: center
   background-color: transparentize(bisque, 0.8)
 
+#logo-word-time
+  color: lightgreen
+
+#logo-word-boss
+  color: lightskyblue
+
 //#hourglass-left, #hourglass-right
 //  position: absolute
 //  bottom: 87px
@@ -161,17 +167,31 @@ hr
 #dropbox
   left: 20px
 
+#dropbox:hover
+  color: darken(deepskyblue, 11)
+
+#dropbox:hover:after
+  content: "dropbox"
+  font-size: 12px
+  position: absolute
+  left: -9px
+  top: -12px
+
 #hdd
   left: 74px
 
-#dropbox:hover, #hdd:hover
-  cursor: pointer
-
-#dropbox:hover
-  color: transparentize(darkblue, 0.2)
-
 #hdd:hover
   color: transparentize(orangered, 0.2)
+
+#hdd:hover:after
+  content: "hdd"
+  font-size: 12px
+  position: absolute
+  left: 2px
+  top: -12px
+
+#dropbox:hover, #hdd:hover
+  cursor: pointer
 
 #done
   width: 52px
@@ -224,12 +244,6 @@ body > footer
 
 .em4
   font-size: 4em
-
-.lightgreen
-  color: lightgreen
-
-.deepskyblue
-  color: lightskyblue
 
 .mCSB_container
   margin-right: 10px

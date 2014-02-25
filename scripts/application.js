@@ -4,6 +4,11 @@ $(window).load(function () {
             updateOnContentResize: true
         }
     });
+    $('#hdd').click(function () {
+        window.open("data:text/json;charset=utf-8,"
+            + encodeURI(JSON.stringify(localStorage))
+        );
+    });
 });
 
 // fix https://github.com/emberjs/data/pull/1494
