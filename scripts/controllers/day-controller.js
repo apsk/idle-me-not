@@ -5,6 +5,13 @@ IdleMeNot.DayController = Em.ObjectController.extend({
         return DateUtils.dateFromDateString(this.get('model.date'));
     }.property('model.date'),
 
+    completionPercentage: function () {
+        var tasks = this.get('tasks').slice(0, -1);
+        var total = tasks.get('length');
+        var completed = tasks.filterBy('completed', true).get('length');
+        return Math.round(completed * 100 / total);
+    }.property('tasks.@each.completed'),
+
     _tasksInitialized: function () {
         this.get('tasks').then(function (tasks) {
             var task = this.store.createRecord('task', { completed: false });

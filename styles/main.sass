@@ -1,4 +1,5 @@
 @import "header-icons.sass"
+@import "datepicker.sass"
 
 @font-face
   font-family: 'League Gothic - Regular'
@@ -173,18 +174,29 @@ hr
   color: transparentize(orangered, 0.2)
 
 #done
+  width: 52px
+  height: 52px
   position: absolute
   color: transparentize(red, 0.4)
-  font-size: 52px
-  top: 3px
+  font-size: 18px
+  top: 2px
   right: 10%
   border-radius: 50%
   z-index: 0
-  border: 1px dotted transparentize(black, 0.8)
-  background-color: #addcd9
+  border: 2px solid #addcd9
+  background-color: darken(#addcd9, 16)
 
-#done:hover
-  color: limegreen
+#completeness
+  position: absolute
+  text-align: center
+  width: 90%
+  top: 12px
+
+#percent
+  position: absolute
+  font-size: 14px
+  bottom: 4px
+  left: 26px
 
 body > footer
   position: absolute
@@ -201,7 +213,6 @@ body > footer
   position: relative
   left: -4px
   font-size: 0.7em
-  //color: transparentize(white, 0.2)
 
 #github
   font-size: 2em
@@ -222,39 +233,3 @@ body > footer
 
 .mCSB_container
   margin-right: 10px
-
-.ui-corner-all
-  border-radius: 0
-
-.ui-widget-header
-  background: url(../resources/background-dark-lilac.jpg)
-  border: 0
-
-.ui-widget-content
-  color: white
-  background: url(../resources/background-dark-lilac.jpg)
-
-.ui-widget-content .ui-state-default
-  background: none
-  border: 1px solid white
-  color: white
-
-.ui-widget-content .ui-state-active
-  color: transparentize(black, 0.4)
-  border: 3px double transparentize(black, 0.4)
-
-.ui-widget-content .ui-state-hover
-  color: transparentize(black, 0.8)
-
-.ui-widget-content::after
-  display: block
-  background-color: transparentize(white, 0.6)
-  position: absolute
-  width: 100%
-  height: 100%
-  top: 0
-  left: 0
-  z-index: -1
-
-.ui-datepicker td span, .ui-datepicker td a
-  text-align: center

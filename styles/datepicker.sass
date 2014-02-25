@@ -1,0 +1,35 @@
+.ui-corner-all
+  border-radius: 0
+
+.ui-widget-header
+  background: url(../resources/background-dark-lilac.jpg)
+  border: 0
+
+.ui-widget-content
+  color: white
+  background: url(../resources/background-dark-lilac.jpg)
+
+.ui-widget-content .ui-state-default
+  background: none
+  border: 1px solid white
+  color: white
+
+.ui-widget-content .ui-state-active
+  color: transparentize(black, 0.4)
+  border: 3px double transparentize(black, 0.4)
+
+.ui-widget-content .ui-state-hover
+  color: transparentize(black, 0.8)
+
+.ui-widget-content::after
+  display: block
+  background-color: transparentize(white, 0.6)
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: -1
+
+.ui-datepicker td span, .ui-datepicker td a
+  text-align: center
