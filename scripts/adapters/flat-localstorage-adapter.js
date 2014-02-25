@@ -14,13 +14,9 @@ var FlatLocalstorageAdapter = DS.Adapter.extend({
         return this.findAll(store, type).then(function (array) {
             return array.filter(function (record) {
                 for (var key in query) {
-                    if (!query.hasOwnProperty(key)) {
-                        continue;
-                    }
+                    if (!query.hasOwnProperty(key)) continue;
                     var value = query[key];
-                    if (record[key] !== value) {
-                        return false;
-                    }
+                    if (record[key] !== value) return false;
                 }
                 return true;
             });

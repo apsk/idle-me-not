@@ -1,0 +1,51 @@
+.header-icon
+  position: absolute
+  font-size: 4em
+  top: 6px
+  color: transparentize(bisque, 0.8)
+
+#icon-bell
+  left: 30px
+#icon-cutlery
+  left: 135px
+#icon-laptop
+  left: 230px
+#icon-puzzle
+  left: 340px
+#icon-glass
+  right: 330px
+#icon-music
+  right: 240px
+#icon-heart
+  right: 130px
+#icon-home
+  right: 30px
+
+@media (min-width: 940px) and (max-width: 1199px)
+  #icon-puzzle, #icon-home
+    visibility: hidden
+  #icon-glass
+    right: 230px
+  #icon-music
+    right: 140px
+  #icon-heart
+    right: 30px
+
+@media (max-width: 939px)
+  .header-icon
+    font-size: 3em
+    top: 14px
+  #icon-puzzle, #icon-home
+    visibility: hidden
+  #icon-bell
+    left: 30px
+  #icon-cutlery
+    left: 110px
+  #icon-laptop
+    left: 185px
+  #icon-glass
+    right: 190px
+  #icon-music
+    right: 120px
+  #icon-heart
+    right: 30px

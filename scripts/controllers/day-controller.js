@@ -38,7 +38,11 @@ IdleMeNot.DayController = Em.ObjectController.extend({
         undo: function () {
             var tasks = this.get('tasks');
             tasks.slice(0, -1).forEach(function (task) { task.rollback(); });
-            this.get('model').reload();
+            var model = this.get('model');
+            if (model.get('id'))
+                this.get('model').reload();
+            else
+                this.set('model', this.store.createRecord('day', { date: model.get('date') }));
         }
     }
 });
