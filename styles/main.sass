@@ -77,6 +77,19 @@ html, body
 #undo:hover
   color: transparentize(yellow, 0.2)
 
+#save:hover:after, #undo:hover:after
+  position: absolute
+  font-size: 10px
+  top: -6px
+  left: 30px
+  white-space: pre-wrap
+
+#save:hover:after
+  content: "s\A a\A v\A e"
+
+#undo:hover:after
+  content: "u\A n\A d\A o"
+
 #date
   display: inline-block
   position: absolute
