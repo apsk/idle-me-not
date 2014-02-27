@@ -12,9 +12,22 @@ IdleMeNot.DayController = Em.ObjectController.extend({
         return total == 0 ? 0 : Math.round(completed * 100 / total);
     }.property('tasks.@each.completed'),
 
+    lastTaskEndingTime: function () {
+        var tasks = this.get('tasks');
+        for (var i = tasks.get('length') - 1; i >= 0; i--) {
+            var endingTime = tasks.objectAt(i).get('endingTime');
+            if (endingTime) return endingTime;
+        }
+        return '07:00';
+    }.property('tasks.@each.endingTime'),
+
     _tasksInitialized: function () {
         this.get('tasks').then(function (tasks) {
-            var task = this.store.createRecord('task', { completed: false });
+            var task = this.store.createRecord('task', {
+                startingTime: '06:00',
+                endingTime: '07:00',
+                completed: false
+            });
             this.set('newTask', task);
             tasks.addObject(task);
         }.bind(this));
@@ -24,7 +37,10 @@ IdleMeNot.DayController = Em.ObjectController.extend({
         var task = this.get('newTask');
         if (task.get('description')) {
             this.get('tasks').then(function (tasks) {
-                task = this.store.createRecord('task', { completed: false });
+                task = this.store.createRecord('task', {
+                    startingTime: this.get('lastTaskEndingTime'),
+                    completed: false
+                });
                 this.set('newTask', task);
                 tasks.addObject(task);
             }.bind(this));

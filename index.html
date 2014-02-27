@@ -13,7 +13,7 @@
     <script type="text/x-handlebars" data-template-name="_task">
         <div {{bind-attr class=":task-entry completed emptyDescription"}}>
             <div class="task-entry-left">
-                {{input type="checkbox" checked=completed}}
+                {{input type="checkbox" checked=completed tabindex=-1}}
                 {{input class="task-starting-time" value=startingTime}}-<!--
                 -->{{input class="task-ending-time" value=endingTime}}:
             </div>
